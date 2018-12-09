@@ -9,11 +9,11 @@ public class Rodeur extends Personnage {
 
 		@Override
 		public String toString() {
-			return "Woarg Je suis le "+this.getClasse()+" joueur "+this.leJoueur+" niveau "+this.niveau+" je possède "+this.vie+" de vitalité, "+this.force+" de force, "+this.agilite+" d'agilité et "+this.intelligence+" d'intelligence !";	
+			return "Chut Je suis le "+super.toString();	
 		}
 
 		@Override
-		void attaqueBasique(Personnage adversaire) {
+		public void attaqueBasique(Personnage adversaire) {
 			int tirAlArc = this.getAgilite();
 	        System.out.println("Joueur "+this.leJoueur+" utilise Tire à  l'Arc et inflige "+tirAlArc+" dommages.");
 	        adversaire.vie -= tirAlArc;
@@ -23,7 +23,7 @@ public class Rodeur extends Personnage {
 		}
 
 		@Override
-		void attaqueSpeciale(Personnage personne) {
+		public void attaqueSpeciale(Personnage personne) {
 			int concentration = this.getNiveau() / 2;
 	        System.out.println("Joueur "+this.leJoueur+" utilise soin et gagne "+concentration+" en agilite.");
 	        this.agilite += concentration;

@@ -9,11 +9,11 @@ public class Guerrier extends Personnage {
 	
 	@Override
 	public String toString() {
-		return "Woarg Je suis le "+this.getClasse()+" joueur "+this.leJoueur+" niveau "+this.niveau+" je possède "+this.vie+" de vitalité, "+this.force+" de force, "+this.agilite+" d'agilité et "+this.intelligence+" d'intelligence !";	
+		return "Woarg Je suis le "+super.toString();	
 	}
 
 	@Override
-	void attaqueBasique(Personnage adversaire) {
+	public void attaqueBasique(Personnage adversaire) {
 		int coupdEpee = this.getForce();
         System.out.println("Joueur "+this.leJoueur+" utilise Coup d'Epée et inflige "+coupdEpee+" dommages.");
         adversaire.vie -= coupdEpee;
@@ -22,7 +22,7 @@ public class Guerrier extends Personnage {
 	}
 
 	@Override
-	void attaqueSpeciale(Personnage adversaire) {
+	public void attaqueSpeciale(Personnage adversaire) {
 		int coupDeRage = this.getForce() * 2;
         System.out.println("Joueur "+this.leJoueur+" Coup de Rage et inflige "+coupDeRage+" dommages.");
         adversaire.vie -= coupDeRage;
