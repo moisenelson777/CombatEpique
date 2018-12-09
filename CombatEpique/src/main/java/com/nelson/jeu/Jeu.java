@@ -10,14 +10,25 @@ import com.nelson.personnages.Rodeur;
 
 public class Jeu {
 	
+		/**
+		 * Instanciation d'un tableau de 2 personnages joueurs.
+		 */
 		private Personnage [] joueurs = new Personnage[2];
 		Scanner sc = new Scanner(System.in);
 		
+		
+		/**
+		 * Initialisation du jeu. 
+		 */
 		public void jouer(){
 				creationDesPersonnages();
 				battaille();
 			}
 		
+		
+		/**
+		 * Initialisation des personnages
+		 */
 		private void creationDesPersonnages() {
 			for(int i = 0; i < joueurs.length;i++) {
 				System.out.println("Création du personnage du joueur "+(i+1));
@@ -55,6 +66,10 @@ public class Jeu {
 			}
 		}
 		
+		
+		/**
+		 * Combat des personnages.
+		 */
 		private void battaille(){
 	        int x=0,y=1;
 	        while (joueurs[x].getVie() > 0 && joueurs[y].getVie() > 0) {

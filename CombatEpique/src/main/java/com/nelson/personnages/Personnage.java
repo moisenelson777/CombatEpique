@@ -3,8 +3,11 @@ package com.nelson.personnages;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
-public abstract class Personnage {
+		/*
+		* La classe abstraite avec les methodes  à implémenter selon la specialité voulue.
+	 	* Elle héritera de classes enfants selon la spécialité nominale.
+	 	*/
+		public abstract class Personnage {
 	
 		protected int niveau, vie, force, agilite, intelligence, niveauMax;
 		protected String classe ;
@@ -12,6 +15,11 @@ public abstract class Personnage {
 
 		Scanner sc = new Scanner(System.in);
 		
+		
+		/**
+		 * Methode qui implémente les attributs du personnage niveau,
+		 * force, agilité, intelligence avec une gestion de cas d'exception possible. 
+		 */
 		public void caracteresPersonnage(){
 			boolean valueIsGood;
 			do {
@@ -89,11 +97,25 @@ public abstract class Personnage {
 			this.niveauMax -= this.intelligence; 
 		};
 		
+		
+		/* 
+		 * Methode décrivant le personnage selon ses spécificités.
+		 */
 		public String toString() {
 			return this.getClasse()+" joueur "+this.leJoueur+" niveau "+this.niveau+" je possède "+this.vie+" de vitalité, "+this.force+" de force, "+this.agilite+" d'agilité et "+this.intelligence+" d'intelligence !";
 		};
-		public abstract void attaqueBasique(Personnage personne);
-		public abstract void attaqueSpeciale(Personnage personne);
+		
+		
+		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
+		 * @param adversaire valeur personnage adverse
+		 */
+		public abstract void attaqueBasique(Personnage adversaire);
+		
+		
+		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.
+		 * @param adversaire valeur personnage adverse
+		 */
+		public abstract void attaqueSpeciale(Personnage adversaire);
 		
 		
 		public int getVie() {

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.nelson.personnages","l":"Guerrier"},{"p":"com.nelson.jeu","l":"Jeu"},{"p":"com.nelson.personnages","l":"Mage"},{"p":"com.nelson.jeu","l":"Main"},{"p":"com.nelson.personnages","l":"Personnage"},{"p":"com.nelson.personnages","l":"Rodeur"}]
