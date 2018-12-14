@@ -1,10 +1,10 @@
 package com.nelson.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.fail;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 class RodeurTest {
 
