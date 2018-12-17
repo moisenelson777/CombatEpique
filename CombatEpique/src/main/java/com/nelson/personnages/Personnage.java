@@ -1,170 +1,140 @@
 package com.nelson.personnages;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 		/*
 		* La classe abstraite avec les methodes  à implémenter selon la specialité voulue.
 	 	* Elle héritera de classes enfants selon la spécialité nominale.
 	 	*/
 		public abstract class Personnage {
-	
-		protected int niveau, vie, force, agilite, intelligence, niveauMax;
-		protected String classe ;
-		protected int leJoueur;
+		
+			protected String nom ;
+			protected int niveau, force, agilite, intelligence, vitalite;
 
-		Scanner sc = new Scanner(System.in);
-		
-		
-		/**
-		 * Methode qui implémente les attributs du personnage niveau,
-		 * force, agilité, intelligence avec une gestion de cas d'exception possible. 
-		 */
-		public void caracteresPersonnage(){
-			boolean valueIsGood;
-			do {
-				System.out.println("Niveau du personnage ?");
-				try {
-					this.niveau = sc.nextInt();
-					valueIsGood = true;
-				}catch (InputMismatchException e) {
-	                System.err.println("Merci de saisir une valeur valide");
-	                valueIsGood = false;
-				}
-				if (this.niveau <= 0 || this.niveau > 100) {
-					System.out.println("Votre niveau doit etre compris entre 1 et 100.");
-					valueIsGood = false;
-				}
-				sc.nextLine();
-			}while(!valueIsGood);
+		public Personnage(String nom, int niveau, int force, int agilite,int intelligence) throws BadCharacteristicsException{
 			
-			this.vie = this.niveau * 5;
-			this.niveauMax = this.niveau;
+			this.nom = nom;
+			this.niveau = niveau;
+			this.force = force;
+			this.agilite = agilite;
+			this.intelligence = intelligence;
+			this.vitalite = this.niveau * 5;
 			
-			do {
-				System.out.println("Force du personnage ?");
-				try {
-					this.force = sc.nextInt();
-					valueIsGood = true;
-				}catch(InputMismatchException e) {
-					System.err.println("Merci de saisir une valeur valide");
-	                valueIsGood = false;
-				}
-				
-				if(this.force > this.niveauMax) {
-					System.out.println("le total force + agilité + intelligence doit être égal au niveau du joueur");
-					valueIsGood = false;
-				}
-				sc.nextLine();
-			}while(!valueIsGood);
-			
-			this.niveauMax -= this.force; 
+			if(force+agilite+intelligence > niveau) throw new BadCharacteristicsException();
+		}
 		
-			do {
-				System.out.println("Agilité du personnage ?");
-				try {
-					this.agilite = sc.nextInt();
-					valueIsGood = true;
-				}catch(InputMismatchException e) {
-					System.err.println("Merci de saisir une valeur valide");
-	                valueIsGood = false;
-				}
-				if(this.agilite > this.niveauMax) {
-					System.out.println("le total force + agilité + intelligence doit être égal au niveau du joueur");
-					valueIsGood = false;
-				}
-				sc.nextLine();
-			}while(!valueIsGood);
-			
-			this.niveauMax -= this.agilite; 
-			
-			do {
-				System.out.println("Intelligence du personnage ?");
-				try{
-					this.intelligence = sc.nextInt();
-					valueIsGood = true;
-				}catch(InputMismatchException e) {
-					System.err.println("Merci de saisir une valeur valide");
-					valueIsGood = false;
-				}
-				if(this.intelligence > this.niveauMax) {
-					System.out.println("le total force + agilité + intelligence doit être égal au niveau du joueur");
-					valueIsGood = false;
-				}
-				sc.nextLine();
-			}while(!valueIsGood);
-			
-			this.niveauMax -= this.intelligence; 
-		};
+		public String getNom() {
+			return nom;
+		}
 		
+		public String getNomEtVitalite() {
+			return nom + " (" + vitalite + " Vitalité)";
+		}
 		
-		/* 
-		 * Methode décrivant le personnage selon ses spécificités.
-		 */
-		public String toString() {
-			return this.getClasse()+" joueur "+this.leJoueur+" niveau "+this.niveau+" je possède "+this.vie+" de vitalité, "+this.force+" de force, "+this.agilite+" d'agilité et "+this.intelligence+" d'intelligence !";
-		};
+		public int getNiveau() {
+			return niveau;
+		}
 		
+		public int getVitalite() {
+			return vitalite;
+		}
+
+		public int getForce() {
+			return force;
+		}
+		
+		public int getAgilite() {
+			return agilite;
+		}
+
+		public int getIntelligence() {
+			return intelligence;
+		}
+		
+		public void infligeDommages(int dommage) {
+			this.vitalite -= dommage;
+	        System.out.println(this.getNom() + " perd " + dommage + " points de vie") ;
+	        if (this.vitalite <= 0)
+	            System.out.println(this.getNom() + " est mort");
+		}
 		
 		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
 		 * @param adversaire valeur personnage adverse
 		 */
 		public abstract void attaqueBasique(Personnage adversaire);
 		
-		
 		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.
 		 * @param adversaire valeur personnage adverse
 		 */
 		public abstract void attaqueSpeciale(Personnage adversaire);
 		
+		@Override
+		public String toString() {
+			return  "Personnage {" + this.nom +", niveau "+this.niveau+" je possède "+this.vitalite+" de vitalité, "+this.force+" de force, "+this.agilite+" d'agilité et "+this.intelligence+" d'intelligence }";
+		    }
+		}	
 		
-		public int getVie() {
-			return vie;
+		/*
+		
+		/**
+		 * Methode qui implémente les attributs du personnage niveau,
+		 * force, agilité, intelligence avec une gestion de cas d'exception possible. 
+		 */
+/*
+		public void caracteresPersonnage(){
+			boolean valeurIsGood;
+			do {
+				this.niveau = askForIntValue("Niveau du personnage ?", 0, 100);
+				this.vie = this.niveau * 5;
+				this.niveauMax = this.niveau;
+				
+				this.force = askForIntValue("Force du personnage ?", 0, this.niveau);
+				this.niveauMax -= this.force; 
+				
+				this.agilite = askForIntValue("Agilité du personnage ?", 0, this.niveau);
+				this.niveauMax -= this.agilite; 
+				
+				this.intelligence = askForIntValue("Intelligence du personnage ?", 0, this.niveau);
+				this.niveauMax -= this.intelligence;
+				
+				if(this.force+this.agilite+this.intelligence <= this.niveau) {
+					valeurIsGood = true;
+				}else {
+					System.out.println("Merci de saisir un total de points de caractères égal au niveau de votre personnage.");
+					valeurIsGood = false;
+				}
+			}while(!valeurIsGood);
+					
 		}
-
-		public void setVie(int vie) {
-			this.vie = vie;
-		}
-
-		public int getForce() {
-			return force;
-		}
-
-		public void setForce(int force) {
-			this.force = force;
-		}
-
-		public int getAgilite() {
-			return agilite;
-		}
-
-		public void setAgilite(int agilite) {
-			this.agilite = agilite;
-		}
-
-		public int getIntelligence() {
-			return intelligence;
-		}
-
-		public void setIntelligence(int intelligence) {
-			this.intelligence = intelligence;
-		}
-
-		public void setClasse(String classe) {
-			this.classe = classe;
-		}
-		public String getClasse() {
-			return classe;
-		}
-
-		public int getNiveauMax() {
-			return niveauMax;
-		}
-
-		public void setNiveauMax(int niveauMax) {
-			this.niveauMax = niveauMax;
-		}
-		public int getNiveau() {
-			return niveau;
-		}
-	}
+			
+		/* 
+		 * Methode décrivant le personnage selon ses spécificités.
+		 */
+		
+		
+	
+/*		
+		public int askForIntValue(String question, int minValue, int maxValue) {
+	        System.out.println(question);
+	        int value = -1;
+	        boolean valueIsGood;
+	        do {
+	            try {
+	                value = sc.nextInt();
+	                valueIsGood = true;
+	            } catch (InputMismatchException e) {
+	                sc.next();
+	                System.err.println("Merci de saisir une valeur valide");
+	                valueIsGood = false;
+	            }
+	            if (value < minValue) {
+	                System.err.println("Merci de saisir une valeur supérieure ou égale à  " + minValue);
+	                valueIsGood = false;
+	            }
+	            if (value > maxValue) {
+	            			System.err.println("Merci de saisir une valeur inférieure ou égale à  " + maxValue);
+		            		valueIsGood = false;
+	            }
+	        } while (!valueIsGood);
+	        return value;
+	    }
+}
+*/

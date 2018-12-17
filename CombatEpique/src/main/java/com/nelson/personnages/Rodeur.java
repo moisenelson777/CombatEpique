@@ -6,41 +6,29 @@ public class Rodeur extends Personnage {
 		/**Contructeur du personnage Rodeur 
 		 * @param leJoueur valeur identifiant du joueur
 		 */
-		public Rodeur(int leJoueur) {
-			super();
-			this.leJoueur = leJoueur;
-		}
+		public Rodeur(String nom, int niveau, int force, int agilite, int intelligence) throws BadCharacteristicsException {
+	        super(nom, niveau, force, agilite, intelligence);
+	    }
 
+		@Override
+	    public void attaqueBasique(Personnage ennemie) {
+			int dommage = agilite;
+	        System.out.println(nom +  " utilise Tir à  l'arc et inflige " + dommage + " dommages.");
+	        ennemie.infligeDommages(dommage);
+	    }
+
+	    @Override
+	    public void attaqueSpeciale(Personnage ennemie) {
+	    	 int agiliteGeneree = agilite / 2;
+	         System.out.println(nom +  " utilise Concentration et gagne " + agiliteGeneree + " en agilité.");
+	         agilite += agiliteGeneree;
+	    }
+		
 		/* 
 		 * Methode décrivant le personnage selon ses spécificités.
 		 */
 		@Override
 		public String toString() {
-			return "Chut Je suis le "+super.toString();	
-		}
-
-		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param adversaire valeur personnage adverse
-		 * 
-		 */ 
-		@Override
-		public void attaqueBasique(Personnage adversaire) {
-			int tirAlArc = this.getAgilite();
-	        System.out.println("Joueur "+this.leJoueur+" utilise Tire à  l'Arc et inflige "+tirAlArc+" dommages.");
-	        adversaire.vie -= tirAlArc;
-	        System.out.println("Le joueur"+adversaire.leJoueur+" perd "+tirAlArc+" point de vie");
-	        if (adversaire.getVie()<=0)
-	            System.out.println("Joueur " + adversaire.leJoueur + " est mort");
-		}
-
-		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param adversaire valeur personnage adverse
-		 * 
-		 */ 
-		@Override
-		public void attaqueSpeciale(Personnage adversaire) {
-			int concentration = this.getNiveau() / 2;
-	        System.out.println("Joueur "+this.leJoueur+" utilise soin et gagne "+concentration+" en agilite.");
-	        this.agilite += concentration;
+			return "Chut je suis le "+super.toString();	
 		}
 	}
