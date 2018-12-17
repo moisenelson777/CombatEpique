@@ -3,10 +3,21 @@ package com.nelson.personnages;
 public class Guerrier extends Personnage {
 	
 	
+	/**Contructeur du personnage
+	 * @param nom
+	 * @param niveau
+	 * @param force
+	 * @param agilite
+	 * @param intelligence
+	 * @throws BadCharacteristicsException
+	 */
 	public Guerrier(String nom, int niveau, int force, int agilite, int intelligence) throws BadCharacteristicsException {
         super(nom, niveau, force, agilite, intelligence);
     }
 
+	/* Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
+	 * @see com.nelson.personnages.Personnage#attaqueBasique(com.nelson.personnages.Personnage)
+	 */
 	@Override
     public void attaqueBasique(Personnage ennemie) {
         int dommage = force;
@@ -14,6 +25,9 @@ public class Guerrier extends Personnage {
         ennemie.infligeDommages(dommage);
     }
 
+    /* Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
+     * @see com.nelson.personnages.Personnage#attaqueSpeciale(com.nelson.personnages.Personnage)
+     */
     @Override
     public void attaqueSpeciale(Personnage ennemie) {
         int dommage = force * 2;
@@ -23,8 +37,9 @@ public class Guerrier extends Personnage {
         this.infligeDommages(autoDommage);
     }
 	
+	
 	/* 
-	 * Methode décrivant le personnage selon ses spécificités.
+	 * @see com.nelson.personnages.Personnage#toString()
 	 */
 	@Override
 	public String toString() {

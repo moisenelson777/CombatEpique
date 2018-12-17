@@ -29,7 +29,7 @@ public class JeuTest {
 	    public void Given_GoodIntValue_When_AskForIntValue_Then_GetSameIntValue() {
 	        System.setIn(new ByteArrayInputStream(String.format("42%n").getBytes()));
 	        Jeu jeu = new Jeu();
-	        int valeur = jeu.demandeValeur("Test ?", 35, 50);
+	        int valeur = jeu.demandeUneValeur("Test ?", 35, 50);
 	        assertEquals(42, valeur);
 	    }
 
@@ -37,7 +37,7 @@ public class JeuTest {
 	    public void Given_BadIntValuesAndGoodIntValue_When_AskForIntValue_Then_GetGoodIntValue() {
 	        System.setIn(new ByteArrayInputStream(String.format("84%n21%n42%n").getBytes()));
 	        Jeu jeu = new Jeu();
-	        int valeur = jeu.demandeValeur("Test ?", 35, 50);
+	        int valeur = jeu.demandeUneValeur("Test ?", 35, 50);
 	        assertEquals(42, valeur);
 	    }
 

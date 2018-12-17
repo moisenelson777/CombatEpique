@@ -2,16 +2,22 @@ package com.nelson.personnages;
 
 public class Mage extends Personnage {
 
-		/**Contructeur du personnage Mage 
-		 * @param leJoueur valeur identifiant du joueur
+		
+		/**Contructeur du personnage
+		 * @param nom
+		 * @param niveau
+		 * @param force
+		 * @param agilite
+		 * @param intelligence
+		 * @throws BadCharacteristicsException
 		 */
 		public Mage(String nom, int niveau, int force, int agilite, int intelligence) throws BadCharacteristicsException {
 	        super(nom, niveau, force, agilite, intelligence);
 	    }
 		
-		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param i valeur personnage adverse
-		 * 
+		
+		/* Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
+		 * @see com.nelson.personnages.Personnage#attaqueBasique(com.nelson.personnages.Personnage)
 		 */
 		@Override
 	    public void attaqueBasique(Personnage adversaire) {
@@ -20,10 +26,10 @@ public class Mage extends Personnage {
 	        adversaire.infligeDommages(dommage);
 	    }
 
-		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param ennemie valeur personnage adverse
-		 * 
-		 */ 
+		 
+	    /* Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
+	     * @see com.nelson.personnages.Personnage#attaqueSpeciale(com.nelson.personnages.Personnage)
+	     */
 	    @Override
 	    public void attaqueSpeciale(Personnage ennemie) {
 	    	int vitaliteGeneree = intelligence * 2;
@@ -35,7 +41,7 @@ public class Mage extends Personnage {
 	    }
 		
 		/* 
-		 * Methode décrivant le personnage selon ses spécificités.
+		 * @see com.nelson.personnages.Personnage#toString()
 		 */
 		@Override
 		public String toString() {

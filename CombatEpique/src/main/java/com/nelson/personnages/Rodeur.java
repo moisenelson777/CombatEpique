@@ -4,12 +4,20 @@ public class Rodeur extends Personnage {
 
 		
 		/**Contructeur du personnage Rodeur 
-		 * @param leJoueur valeur identifiant du joueur
+		 * @param nom
+		 * @param niveau
+		 * @param force
+		 * @param agilite
+		 * @param intelligence
+		 * @throws BadCharacteristicsException
 		 */
 		public Rodeur(String nom, int niveau, int force, int agilite, int intelligence) throws BadCharacteristicsException {
 	        super(nom, niveau, force, agilite, intelligence);
 	    }
 
+		/* 
+		 * @see com.nelson.personnages.Personnage#attaqueBasique(com.nelson.personnages.Personnage)
+		 */
 		@Override
 	    public void attaqueBasique(Personnage ennemie) {
 			int dommage = agilite;
@@ -17,6 +25,9 @@ public class Rodeur extends Personnage {
 	        ennemie.infligeDommages(dommage);
 	    }
 
+	    /* 
+	     * @see com.nelson.personnages.Personnage#attaqueSpeciale(com.nelson.personnages.Personnage)
+	     */
 	    @Override
 	    public void attaqueSpeciale(Personnage ennemie) {
 	    	 int agiliteGeneree = agilite/2;
@@ -24,8 +35,9 @@ public class Rodeur extends Personnage {
 	         agilite += agiliteGeneree;
 	    }
 		
+		
 		/* 
-		 * Methode décrivant le personnage selon ses spécificités.
+		 * @see com.nelson.personnages.Personnage#toString()
 		 */
 		@Override
 		public String toString() {

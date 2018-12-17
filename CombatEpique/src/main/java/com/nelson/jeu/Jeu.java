@@ -12,6 +12,9 @@ public class Jeu {
 	
 	Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * Méthode de création des personnages  et vitalité.
+	 */
 	public void jouer() {
         System.out.println("Création du personnage du Joueur 1");
         joueur1 = creerPersonnage("Joueur 1");
@@ -30,22 +33,30 @@ public class Jeu {
             System.out.println(joueur2.getNom() + " a perdu !");
     }
 
-   public void tourDuJoueur(Personnage playerOffense, Personnage playerDefense) {
-        int typeAttaque = demandeValeur(playerOffense.getNomEtVitalite()+ " veuillez choisir votre action (1 : Attaque Basique, 2 : Attaque Spéciale)", 1, 2);
+   /**Méthode qui passe la main au joueur
+ * @param playerOffense valeur personnage qui à la main.
+ * @param playerDefense valeur personnage qui n'a pas la main.
+ */
+public void tourDuJoueur(Personnage playerOffense, Personnage playerDefense) {
+        int typeAttaque = demandeUneValeur(playerOffense.getNomEtVitalite()+ " veuillez choisir votre action (1 : Attaque Basique, 2 : Attaque Spéciale)", 1, 2);
         if (typeAttaque == 1)
         	playerOffense.attaqueBasique(playerDefense);
         else
         	playerOffense.attaqueSpeciale(playerDefense);
     }
 
-   public Personnage creerPersonnage(String nom) {
+   /**Méthode d'implémentation des caractères du personnage.
+ * @param nom valeur nomination du personnage.
+ * @return valeur Personnage.
+ */
+public Personnage creerPersonnage(String nom) {
     	Personnage personnage = null;
         do {
-            int classePersonnage = demandeValeur("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rodeur, 3 : Mage)", 1, 3);
-            int niveau = demandeValeur("Niveau du personnage ?", 1, 100);
-            int force = demandeValeur("Force du personnage ?", 0, 100);
-            int agilite = demandeValeur("Agilité du personnage ?", 0, 100);
-            int intelligence = demandeValeur("Intelligence du personnage ?", 0, 100);
+            int classePersonnage = demandeUneValeur("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rodeur, 3 : Mage)", 1, 3);
+            int niveau = demandeUneValeur("Niveau du personnage ?", 1, 100);
+            int force = demandeUneValeur("Force du personnage ?", 0, 100);
+            int agilite = demandeUneValeur("Agilité du personnage ?", 0, 100);
+            int intelligence = demandeUneValeur("Intelligence du personnage ?", 0, 100);
             try {
                 switch (classePersonnage) {
                     case 1 :
@@ -66,7 +77,7 @@ public class Jeu {
         return personnage;
     }
 
-    public int demandeValeur(String question, int valeurMin, int valeurMax) {
+    public int demandeUneValeur(String question, int valeurMin, int valeurMax) {
         System.out.println(question);
         int value = -1;
         boolean valeurValide;

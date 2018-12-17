@@ -1,7 +1,7 @@
 package com.nelson.personnages;
 
 		/*
-		* La classe abstraite avec les methodes  à implémenter selon la specialité voulue.
+		* La classe abstraite avec les methodes  à implémenter selon la specialité.
 	 	* Elle héritera de classes enfants selon la spécialité nominale.
 	 	*/
 		public abstract class Personnage {
@@ -9,6 +9,14 @@ package com.nelson.personnages;
 			protected String nom ;
 			protected int niveau, force, agilite, intelligence, vitalite;
 
+		/**Constructeur par défaut du personnage;
+		 * @param nom valeur nomination du personnage;
+		 * @param niveau valeur niveau du personnage;
+		 * @param force valeur force du personnage;
+		 * @param agilite valeur agilité du personnage;
+		 * @param intelligence valeur intelligence du personnage;
+		 * @throws BadCharacteristicsException levée si somme des capacités supérieure au niveau;
+		 */
 		public Personnage(String nom, int niveau, int force, int agilite,int intelligence) throws BadCharacteristicsException{
 			
 			this.nom = nom;
@@ -49,6 +57,9 @@ package com.nelson.personnages;
 			return intelligence;
 		}
 		
+		/**Méthode décrivant la portée des dégats infligés suite à une attaque.
+		 * @param dommage valeur dégat infligé à l'adversaire.
+		 */
 		public void infligeDommages(int dommage) {
 			this.vitalite -= dommage;
 	        System.out.println(this.getNom() + " perd " + dommage + " points de vie") ;
@@ -57,15 +68,18 @@ package com.nelson.personnages;
 		}
 		
 		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param adversaire valeur personnage adverse
+		 * @param ennemie valeur personnage adverse
 		 */
 		public abstract void attaqueBasique(Personnage ennemie);
 		
 		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param adversaire valeur personnage adverse
+		 * @param ennemie valeur personnage adverse
 		 */
 		public abstract void attaqueSpeciale(Personnage ennemie);
 		
+		/* 
+		 * Présente le personnage ainsi que ses attributs.
+		 */
 		@Override
 		public String toString() {
 			return   this.getClass().getSimpleName()+" {" + this.nom +", niveau "+this.niveau+" je possède "+this.vitalite+" de vitalité, "+this.force+" de force, "+this.agilite+" d'agilité et "+this.intelligence+" d'intelligence }";
