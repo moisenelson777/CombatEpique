@@ -59,12 +59,12 @@ package com.nelson.personnages;
 		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
 		 * @param adversaire valeur personnage adverse
 		 */
-		public abstract void attaqueBasique(Personnage adversaire);
+		public abstract void attaqueBasique(Personnage ennemie);
 		
 		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.
 		 * @param adversaire valeur personnage adverse
 		 */
-		public abstract void attaqueSpeciale(Personnage adversaire);
+		public abstract void attaqueSpeciale(Personnage ennemie);
 		
 		@Override
 		public String toString() {
