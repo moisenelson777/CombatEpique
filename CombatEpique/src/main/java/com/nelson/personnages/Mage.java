@@ -10,14 +10,14 @@ public class Mage extends Personnage {
 	    }
 		
 		/**Exécute attaque basique du joueur et affiche le dégat infligé à l'adversaire.
-		 * @param ennemie valeur personnage adverse
+		 * @param i valeur personnage adverse
 		 * 
 		 */
 		@Override
-	    public void attaqueBasique(Personnage ennemie) {
+	    public void attaqueBasique(Personnage adversaire) {
 	        int dommage = intelligence;
 	        System.out.println(nom +  " utilise  Boule de Feu et inflige " + dommage + " dommages.");
-	        ennemie.infligeDommages(dommage);
+	        adversaire.infligeDommages(dommage);
 	    }
 
 		/**Exécute attaque spéciale du joueur et affiche le dégat infligé à l'adversaire.

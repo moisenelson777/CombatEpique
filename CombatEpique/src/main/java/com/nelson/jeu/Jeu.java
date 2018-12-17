@@ -9,6 +9,7 @@ public class Jeu {
 
 	Personnage joueur1;
 	Personnage joueur2;
+	
 	Scanner sc = new Scanner(System.in);
 	
 	public void jouer() {
@@ -29,15 +30,15 @@ public class Jeu {
             System.out.println(joueur2.getNom() + " a perdu !");
     }
 
-    void tourDuJoueur(Personnage joueur, Personnage adversaire) {
-        int typeAttaque = demandeValeur(joueur.getNomEtVitalite()+ " veuillez choisir votre action (1 : Attaque Basique, 2 : Attaque Spéciale)", 1, 2);
+   public void tourDuJoueur(Personnage playerOffense, Personnage playerDefense) {
+        int typeAttaque = demandeValeur(playerOffense.getNomEtVitalite()+ " veuillez choisir votre action (1 : Attaque Basique, 2 : Attaque Spéciale)", 1, 2);
         if (typeAttaque == 1)
-        	joueur.attaqueBasique(adversaire);
+        	playerOffense.attaqueBasique(playerDefense);
         else
-        	joueur.attaqueSpeciale(adversaire);
+        	playerOffense.attaqueSpeciale(playerDefense);
     }
 
-    Personnage creerPersonnage(String nom) {
+   public Personnage creerPersonnage(String nom) {
     	Personnage personnage = null;
         do {
             int classePersonnage = demandeValeur("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rodeur, 3 : Mage)", 1, 3);
@@ -65,7 +66,7 @@ public class Jeu {
         return personnage;
     }
 
-    int demandeValeur(String question, int valeurMin, int valeurMax) {
+    public int demandeValeur(String question, int valeurMin, int valeurMax) {
         System.out.println(question);
         int value = -1;
         boolean valeurValide;
@@ -83,10 +84,18 @@ public class Jeu {
                 valeurValide = false;
             }
             if (value > valeurMax) {
-                System.err.println("Merci de saisir une valeur inférieure ou égale Ã  " + valeurMax);
+                System.err.println("Merci de saisir une valeur inférieure ou égale à  " + valeurMax);
                 valeurValide = false;
             }
         } while (!valeurValide);
         return value;
     }
+    
+	public Personnage getJoueur1() {
+		return joueur1;
+	}
+
+	public Personnage getJoueur2() {
+		return joueur2;
+	}
 }
